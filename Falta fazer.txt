@@ -1,0 +1,22 @@
+Falta fazer
+
+Luiz Henrique
+	Implementar controle de acesso ao sistema
+	CRUD completo Usuario, Grupo
+	Layout do resto
+
+	Esqueleto do sistema
+	Login
+	Index -> Admin
+		Todas opções
+
+
+Rodolfo
+	CRUD Recurso
+	Implementar controle de acesso ao recurso
+	Layout Index (recursos)
+	Criar tabela de recurso associado a tabela de grupo
+	Index -> Usuario
+		Lista dos recursos para download
+		Opção de compartilhar/upload recurso
+		OPção de deletar recurso(incluir associação de usuario->recurso, deletar somente seus recursos)
