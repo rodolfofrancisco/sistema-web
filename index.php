@@ -1,15 +1,16 @@
+<?php
+	session_start();
+	if (!isset($_SESSION['Usuario'])/* && !isset($_COOKIE["logado"])*/)
+		header("Location: login.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Index</title>
 </head>
 <body>
-   
-   <form action="ValidarUsuario.php" method="POST">
-       Login: <br/><input type="text" name="login" /><br/>
-       Senha: <br/><input type="password" name="senha" /><br/>
-        <input type="submit" name="btn" value="Acessar"><br/>
-    </form>
+   <h1>Compartilhamento de arquivos</h1>
 </body>
 </html>
