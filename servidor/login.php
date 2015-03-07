@@ -14,7 +14,7 @@ if (mysqli_num_rows($result) > 0) {
 	}	
 
 	if($achou) {				
-		setcookie("logado", "ok", time()+60);
+		setcookie("logado", "ok", time()+60, "/");
 
 		//Se for admin vai para admin.php
 		//Senão vai para index.php
@@ -25,9 +25,12 @@ if (mysqli_num_rows($result) > 0) {
 		}
 	} else {   
 		session_destroy();
-		header("Location: ../login.php?msg=Usuario ou Senha Inválidos!");                        
+		header("Location: ../login.php?msg=Usuario ou Senha Inválidos!"); 
 	}
-}	
+}else{
+	session_destroy();
+	header("Location: ../login.php?msg=Usuario ou Senha Inválidos!");                        
+}
 
 mysqli_close($conexao);
 /*}*/

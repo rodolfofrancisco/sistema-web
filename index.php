@@ -1,7 +1,9 @@
 <?php
 	session_start();
-	if (!isset($_SESSION['Usuario'])/* && !isset($_COOKIE["logado"])*/)
+	if (!isset($_SESSION['Usuario']) || !isset($_COOKIE["logado"]))
 		header("Location: login.php");
+
+	setcookie("logado", 'ok', time()+60, "/");
 ?>
 
 <!DOCTYPE html>
