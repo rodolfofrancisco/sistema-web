@@ -1,0 +1,18 @@
+body {
+	background-color:#fff;
+	-webkit-font-smoothing: antialiased;
+	font: normal 14px Roboto,arial,sans-serif;
+	width: 100%;
+}
+.content {
+	margin: 0 auto;
+	width: 960px;
+}
+.table {
+	width: 95% !important;
+	margin: 0 auto !important;
+}
+label{
+	padding-top: 8px;
+	padding-bottom: 5px;
+}

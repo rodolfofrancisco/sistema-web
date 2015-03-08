@@ -1,12 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
 		<title>Login</title>
-
+		<!-- Bootstrap -->
 		<link href="bootstrap-3.3.2/css/bootstrap.min.css" rel="stylesheet">
 		<script src="bootstrap-3.3.2/js/bootstrap.min.js"></script>
+		<!-- Css de login -->
+		<link href="css/login.css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="container">
@@ -31,50 +32,5 @@
 				</form>
 			</div>
 		</div>
-	<style type="text/css">
-		body {
-			background-color:#fff;
-			-webkit-font-smoothing: antialiased;
-			font: normal 14px Roboto,arial,sans-serif;
-		}
-
-		.container {
-			padding: 25px;
-			position: fixed;
-		}
-
-		.form-login {
-			background-color: #EDEDED;
-			padding-top: 10px;
-			padding-bottom: 20px;
-			padding-left: 20px;
-			padding-right: 20px;
-			border-radius: 15px;
-			border-color:#d2d2d2;
-			border-width: 5px;
-			box-shadow:0 1px 0 #cfcfcf;
-		}
-
-		h4 { 
-			border:0 solid #fff; 
-			border-bottom-width:1px;
-			padding-bottom:10px;
-			text-align: center;
-		}
-
-		.form-control {
-			border-radius: 10px;
-		}
-
-		.wrapper {
-			text-align: center;
-		}
-	</style>
 	</body>
 </html>
-<!-- <div class="panel panel-default">
-  <div class="panel-heading">Panel heading without title</div>
-  <div class="panel-body">
-    Panel content
-  </div>
-</div> -->
