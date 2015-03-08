@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 05-Mar-2015 às 00:23
+-- Data de Criação: 08-Mar-2015 às 17:16
 -- Versão do servidor: 5.5.38-0ubuntu0.14.04.1
 -- versão do PHP: 5.5.9-1ubuntu4.6
 
@@ -33,7 +33,16 @@ CREATE TABLE IF NOT EXISTS `grupo` (
   `nome` varchar(100) NOT NULL,
   `tipo` varchar(40) NOT NULL,
   PRIMARY KEY (`codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Extraindo dados da tabela `grupo`
+--
+
+INSERT INTO `grupo` (`codigo`, `nome`, `tipo`) VALUES
+(1, 'Grupo 1', 'Pós graduação'),
+(4, 'Grupo 2', 'Ensino Fundamental'),
+(8, 'Grupo 3', 'Graduação');
 
 -- --------------------------------------------------------
 
@@ -58,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `recurso` (
 --
 
 CREATE TABLE IF NOT EXISTS `usuario` (
-  `id` int(11) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `acesso` int(11) NOT NULL DEFAULT '2',
   `login` varchar(30) NOT NULL,
   `senha` varchar(100) NOT NULL,
@@ -69,8 +78,24 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `sexo` varchar(1) NOT NULL,
   `telefone` varchar(30) NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `login` (`login`),
   KEY `codigogrupo` (`codigogrupo`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `acesso`, `login`, `senha`, `nome`, `email`, `codigogrupo`, `datanasc`, `sexo`, `telefone`) VALUES
+(1, 1, 'admin', '123', 'Admin', 'admin@admin.com', 1, '10/12/1900', 'M', '31 99999999'),
+(2, 2, 'usuario', '123', 'Usuario', 'usuario@usuario.com', 1, '10/12/2010', 'M', '31 88888888'),
+(4, 1, '123', '123', '123', '123@email.com', 1, '123', 'M', '123'),
+(5, 1, '1234', '123', '123', '123@email.com', 1, '123', 'M', '123'),
+(6, 1, '12345', '123', '123', '123@email.com', 1, '123', 'M', '123'),
+(7, 1, '123456', '123', '123', '123@email.com', 1, '123', 'M', '123'),
+(8, 1, '1234567', '123', '123', '123@email.com', 1, '123', 'M', '123'),
+(9, 1, '12345678', '123', '123', '123@email.com', 1, '123', 'M', '123'),
+(10, 1, '123456789', '123', '123', '123@email.com', 1, '123', 'M', '123');
 
 --
 -- Constraints for dumped tables
@@ -80,8 +105,8 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 -- Limitadores para a tabela `recurso`
 --
 ALTER TABLE `recurso`
-  ADD CONSTRAINT `recurso_ibfk_2` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`id`),
-  ADD CONSTRAINT `recurso_ibfk_1` FOREIGN KEY (`codigogrupo`) REFERENCES `grupo` (`codigo`);
+  ADD CONSTRAINT `recurso_ibfk_1` FOREIGN KEY (`codigogrupo`) REFERENCES `grupo` (`codigo`),
+  ADD CONSTRAINT `recurso_ibfk_2` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`id`);
 
 --
 -- Limitadores para a tabela `usuario`
