@@ -1,81 +1,44 @@
-<!DOCTYPE html>
-<html lang="pt_br">
-<head>
-    <meta charset="UTF-8">
-    <title>Validação de grupos</title>
-</head>
-<body>
-   
-    <?php
-    $tipoid;
-    $codigo = $_POST["Codigo"];
-    $nome = $_POST["Nome"];
-    $tipo = $_POST["Tipo"];
-    $erro = false;
-    $selecao;
-    $conexao = mysqli_connect('localhost', 'root', '', 'SistemaWebDB');
-    
-    if (empty($codigo) or strstr($codigo, ' '))
-    {                            
-        echo "Preencha o código </br>";
-        $erro = true;
-    }
-    
-    if (strlen($codigo) > 100)
-    {                            
-        echo "O tamanho máximo do código é 10 caracteres </br>";
-        $erro = true;
-    }
+<?php
+require_once("conexao.php");
+session_start();
 
-    if (empty($nome))
-    {                            
-        echo "Preencha seu nome </br>";
-        $erro = true;
-    }
-    
-    if (strlen($nome) > 100)
-    {                            
-        echo "O tamanho máximo é 100 caracteres </br>";
-        $erro = true;           
-    }
-    
-    if ($tipo == "Selecione")
-    {                            
-        echo "Preencha o tipo </br>";
-        $erro = true;           
-    }  
+//Se não tiver logado redireciona para login
+if (isset($_SESSION["Usuario"]) /*&& isset($_COOKIE['logado'])*/){
+	setcookie("logado", 'ok', time()+60, "/");			
+	
+	//Se não for admin redireciona para index
+	if ($_SESSION['Usuario']['acesso'] != 1){
+		header("Location: index.php");
+	}	
+}else{
+	session_destroy();
+	header("Location: login.php");
+}
 
 
-    if (!$conexao)
-    {
-        echo "Não conectou </br>";
-    }
-    
-    else
-    {
-        if ($erro == true)
-        {
-            echo "Há erros no sistema e nada será inserido no banco de dados !!!! </br>";
-        }
-        
-        else
-        {
-            $selecao = "SELECT ID FROM sistemawebdb.tipogrupo WHERE Nome = '$tipo'";
-            $dados = mysql_query($selecao);
-            $tipoid = mysql_fetch_row($dados);                
-            
-                //echo "ID =====>" . $tipoid[0];
-            
-            $sql = "Insert into `grupoestudo`(codigo, nome, tipogrupoid) Values                                             ('$codigo','$nome','$tipoid[0]') ";  
-            mysqli_query($conexao, $sql); 
-        }
-        
-        mysqli_close($conexao);
-    }
-    
-    ?>
-    
-    
-    
-</body>
-</html>
+$nome = $_POST['nome'];
+$tipo = $_POST['tipo'];
+
+$erro = false;
+$msg = "";
+foreach($_POST as $key => $value){
+	if ($value == ''){
+		$msg .= "Voce deve preenche o campo {$key} <br />";
+		$erro = true;
+	}
+}
+
+if (!$erro){
+	$sql = "INSERT INTO grupo (nome, tipo) 
+			VALUES('" . utf8_decode($nome) ."', '" . utf8_decode($tipo) ."')"; 
+
+	$result = mysqli_query($conexao, $sql, $field=0);
+
+	$msg .= "Grupo inserido com sucesso<br />";
+}
+
+mysqli_close($conexao);
+
+header("Location: ../cadastrargrupo.php?status={$erro}&msg={$msg}");
+
+?>      
