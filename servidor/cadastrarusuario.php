@@ -28,20 +28,21 @@ $senha = $_POST['senha'];
 $confsenha = $_POST['confsenha'];
 
 $erro = false;
+$msg = "";
 foreach($_POST as $key => $value){
 	if ($value == ''){
-		echo "Voce deve preenche o campo {$key} <br />";
+		$msg .= "Voce deve preenche o campo {$key} <br />";
 		$erro = true;
 	}
 }
 if (!isset($_POST['sexo'])){
 	$erro = true;
-	echo "Voce deve preencher o sexo <br />";
+	$msg .= "Voce deve preencher o sexo <br />";
 }
 
 if ($senha != $confsenha){
 	$erro = true;
-	echo "Suas senhas não conferem <br />";
+	$msg .= "Suas senhas não conferem <br />";
 }
 
 $email = $_POST['email'];
@@ -49,21 +50,21 @@ $regex = '^'. '[_a-z0-9-]+'. '(\.[_a-z0-9-]+)*'. '@'. '[a-z0-9-]+'. '(\.[a-z0-9-
 
 if (!eregi($regex, $email)) {
 	$erro = true;
-	echo "Digite um e-mail válido!";
+	$msg .= "Digite um e-mail válido!<br />";
 
 }
 
 if (!$erro){
 	$sql = "INSERT INTO usuario (acesso, login, senha, nome, email, codigogrupo, datanasc, sexo, telefone) 
 			VALUES('" . $privilegio ."', '" . $login ."', '" . $senha ."', '" . $nome ."', '" . $email ."', '" . $grupo ."', '" . $datanasc ."', '" . $sexo ."', '" . $telefone ."')"; 
-	
-	echo $sql;
 
 	$result = mysqli_query($conexao, $sql, $field=0);
 
-	echo "Usuario inserido com sucesso";
+	$msg .= "Usuario inserido com sucesso<br />";
 }
 
 mysqli_close($conexao);
+
+header("Location: ../cadastrarusuario.php?status={$erro}&msg={$msg}");
 
 ?>      

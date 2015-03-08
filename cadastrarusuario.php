@@ -3,7 +3,7 @@ require_once("servidor/conexao.php");
 session_start();
 
 //Se não tiver logado redireciona para login
-if (isset($_SESSION["Usuario"]) && isset($_COOKIE['logado'])){
+if (isset($_SESSION["Usuario"]) /*&& isset($_COOKIE['logado'])*/){
 	setcookie("logado", 'ok', time()+60, "/");			
 	
 	//Se não for admin redireciona para index
@@ -37,6 +37,20 @@ if (isset($_SESSION["Usuario"]) && isset($_COOKIE['logado'])){
 			<div class="span10 offset1">
 				<form class="form-horizontal" action="servidor/cadastrarusuario.php" method="post">    
 					<div class="well">
+						<?php
+							if (isset($_GET['status'])){
+								if ($_GET['status'] == 1)
+									$cor = "red";
+								else{
+									$cor = "green";
+								}
+							}
+						?>
+						<div class="msgerro <?php echo $cor; ?>">
+						<?php
+							echo isset($_GET['msg']) ? $_GET['msg'] : '';
+						?>
+						</div>
 						<fieldset>                 
 							<div class="control-group">
 								<label class="control-label" for="nome">Nome </label>   
