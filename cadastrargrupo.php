@@ -38,6 +38,7 @@ if (isset($_SESSION["Usuario"]) /*&& isset($_COOKIE['logado'])*/){
 				<form class="form-horizontal" action="servidor/cadastrargrupo.php" method="post">    
 					<div class="well">
 						<?php
+                                                    $cor = '';
 							if (isset($_GET['status'])){
 								if ($_GET['status'] == 1)
 									$cor = "red";

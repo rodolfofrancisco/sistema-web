@@ -102,7 +102,7 @@ if (isset($_SESSION["Usuario"]) && isset($_COOKIE['logado'])){
 
 							<tbody>
 								<?php 
-								$sql = "SELECT g.nome, g.tipo
+								$sql = "SELECT g.*
 										FROM grupo as g";
 
 								$result = mysqli_query($conexao, $sql, $field=0);
@@ -114,8 +114,8 @@ if (isset($_SESSION["Usuario"]) && isset($_COOKIE['logado'])){
 										<td> <?php echo $row['nome']; ?> </td>
 										<td> <?php echo utf8_encode($row['tipo']); ?> </td>    
 										<td width="125">
-											<a class="btn btn-xs btn-success " href="Atualizar.php?id=<?php echo $row['id']; ?>" > Atualizar</a>
-											<a class="btn btn-xs btn-danger" href="Excluir.php?id=<?php echo $row['id']; ?>" > Excluir</a>
+											<a class="btn btn-xs btn-success " href="Atualizar.php?id=<?php echo $row['codigo']; ?>" > Atualizar</a>
+											<a class="btn btn-xs btn-danger" href="Excluir.php?id=<?php echo $row['codigo']; ?>" > Excluir</a>
 										</td>                     
 									</tr>
 									<?php

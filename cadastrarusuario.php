@@ -38,6 +38,7 @@ if (isset($_SESSION["Usuario"]) /*&& isset($_COOKIE['logado'])*/){
 				<form class="form-horizontal" action="servidor/cadastrarusuario.php" method="post">    
 					<div class="well">
 						<?php
+                                                $cor = '';
 							if (isset($_GET['status'])){
 								if ($_GET['status'] == 1)
 									$cor = "red";
@@ -117,7 +118,7 @@ if (isset($_SESSION["Usuario"]) /*&& isset($_COOKIE['logado'])*/){
 										?>
 									</select>
 									<?php
-									mysql_close();
+									mysqli_close($conexao);
 									?>   
 								</div>
 							</div>  

@@ -9,7 +9,7 @@ $result = mysqli_query($conexao, $sql, $field=0);
 
 if (mysqli_num_rows($result) > 0) {
 	while($row = mysqli_fetch_assoc($result)) {
-		$_SESSION ['Usuario'] = $row;
+		$_SESSION['Usuario'] = $row;
 		$achou = true;
 	}	
 
