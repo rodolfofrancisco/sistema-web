@@ -34,6 +34,19 @@ if (isset($_SESSION["Usuario"]) && isset($_COOKIE['logado'])){
 			<div class="panel panel-primary">
 				<div class="panel-heading">Usuários</div>
 	  			<div class="panel-body">
+	  				<?php
+                        $cor = '';
+                        if (isset($_GET['status'])) {
+                            if ($_GET['status'] == 1) {
+                                $cor = "red";
+                            } else{
+                                $cor = "green";
+                            }
+                        }
+                    ?>
+	  				<div class="msgerro <?php echo $cor; ?>">
+                        <?php echo isset($_GET['msgu']) ? $_GET['msgu'] : ''; ?>
+                    </div>
 					<a href="cadastrarusuario.php" class="btn btn-link">Cadastrar novo usuário</a>    
 					<div class="row">   
 						<table class="table table-hover table-condensed table-striped table-bordered">
@@ -89,19 +102,19 @@ if (isset($_SESSION["Usuario"]) && isset($_COOKIE['logado'])){
 			<div class="panel panel-primary">
 				<div class="panel-heading">Grupos</div>
 	  			<div class="panel-body">
-                                            <?php
-                                                $cor = '';
-                                                if (isset($_GET['status'])) {
-                                                    if ($_GET['status'] == 1) {
-                                                        $cor = "red";
-                                                    } else{
-                                                        $cor = "green";
-                                                    }
-                                                }
-                                            ?>
-                                            <div class="msgerro <?php echo $cor; ?>">
-                                                <?php echo isset($_GET['msg']) ? $_GET['msg'] : ''; ?>
-                                            </div>
+                    <?php
+                        $cor = '';
+                        if (isset($_GET['status'])) {
+                            if ($_GET['status'] == 1) {
+                                $cor = "red";
+                            } else{
+                                $cor = "green";
+                            }
+                        }
+                    ?>
+                    <div class="msgerro <?php echo $cor; ?>">
+                        <?php echo isset($_GET['msgg']) ? $_GET['msgg'] : ''; ?>
+                    </div>
 					<a href="cadastrargrupo.php" class="btn btn-link">Cadastrar novo grupo</a>    
 					<div class="row">   
 						<table class="table table-hover table-condensed table-striped table-bordered">

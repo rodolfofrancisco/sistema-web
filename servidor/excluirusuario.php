@@ -38,4 +38,4 @@ if (!$erro) {
 
 mysqli_close($conexao);
 
-header("Location: ../admin.php?status={$erro}&msg={$msg}");
+header("Location: ../admin.php?status={$erro}&msgu={$msg}");
