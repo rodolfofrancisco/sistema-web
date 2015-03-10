@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Máquina: localhost
--- Data de Criação: 08-Mar-2015 às 17:16
--- Versão do servidor: 5.5.38-0ubuntu0.14.04.1
--- versão do PHP: 5.5.9-1ubuntu4.6
+-- Host: 127.0.0.1
+-- Generation Time: 09-Mar-2015 às 19:51
+-- Versão do servidor: 5.6.17
+-- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de Dados: `sistemaweb`
+-- Database: `sistemaweb`
 --
 CREATE DATABASE IF NOT EXISTS `sistemaweb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `sistemaweb`;
@@ -28,12 +28,13 @@ USE `sistemaweb`;
 -- Estrutura da tabela `grupo`
 --
 
+DROP TABLE IF EXISTS `grupo`;
 CREATE TABLE IF NOT EXISTS `grupo` (
   `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `tipo` varchar(40) NOT NULL,
   PRIMARY KEY (`codigo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Extraindo dados da tabela `grupo`
@@ -42,7 +43,9 @@ CREATE TABLE IF NOT EXISTS `grupo` (
 INSERT INTO `grupo` (`codigo`, `nome`, `tipo`) VALUES
 (1, 'Grupo 1', 'Pós graduação'),
 (4, 'Grupo 2', 'Ensino Fundamental'),
-(8, 'Grupo 3', 'Graduação');
+(8, 'Grupo 3', 'Graduação'),
+(9, 'Grupo 4', 'Pós Graduação'),
+(10, 'Grupo 5', 'Ensino Médio');
 
 -- --------------------------------------------------------
 
@@ -50,6 +53,7 @@ INSERT INTO `grupo` (`codigo`, `nome`, `tipo`) VALUES
 -- Estrutura da tabela `recurso`
 --
 
+DROP TABLE IF EXISTS `recurso`;
 CREATE TABLE IF NOT EXISTS `recurso` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `caminho` varchar(100) NOT NULL,
@@ -58,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `recurso` (
   PRIMARY KEY (`id`),
   KEY `codigogrupo` (`codigogrupo`),
   KEY `idusuario` (`idusuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
@@ -66,6 +70,7 @@ CREATE TABLE IF NOT EXISTS `recurso` (
 -- Estrutura da tabela `usuario`
 --
 
+DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `acesso` int(11) NOT NULL DEFAULT '2',
@@ -80,22 +85,15 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `login` (`login`),
   KEY `codigogrupo` (`codigogrupo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id`, `acesso`, `login`, `senha`, `nome`, `email`, `codigogrupo`, `datanasc`, `sexo`, `telefone`) VALUES
-(1, 1, 'admin', '123', 'Admin', 'admin@admin.com', 1, '10/12/1900', 'M', '31 99999999'),
-(2, 2, 'usuario', '123', 'Usuario', 'usuario@usuario.com', 1, '10/12/2010', 'M', '31 88888888'),
-(4, 1, '123', '123', '123', '123@email.com', 1, '123', 'M', '123'),
-(5, 1, '1234', '123', '123', '123@email.com', 1, '123', 'M', '123'),
-(6, 1, '12345', '123', '123', '123@email.com', 1, '123', 'M', '123'),
-(7, 1, '123456', '123', '123', '123@email.com', 1, '123', 'M', '123'),
-(8, 1, '1234567', '123', '123', '123@email.com', 1, '123', 'M', '123'),
-(9, 1, '12345678', '123', '123', '123@email.com', 1, '123', 'M', '123'),
-(10, 1, '123456789', '123', '123', '123@email.com', 1, '123', 'M', '123');
+(14, 2, 'noob', 'e99a18c428cb38d5f260853678922e03', 'noob', 'noob@noob.com', 1, '06/03/2015', 'M', '(88) 8888-8888'),
+(15, 1, 'Administrador', 'e99a18c428cb38d5f260853678922e03', 'Adminstrador', 'admin@gmail.com', 1, '09/02/1989', 'M', '(31) 1234-5678');
 
 --
 -- Constraints for dumped tables

@@ -1,5 +1,0 @@
-Falta fazer
-
-inserir senha com md10
-inserir verificação de de login ao inserir
-atualizar e excluir usuario e grupo

@@ -18,15 +18,23 @@ if (isset($_SESSION["Usuario"]) /*&& isset($_COOKIE['logado'])*/){
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
 	<meta charset="UTF-8">
-	<title>Cadastro de Usuários</title>  
-	<!-- Bootstrap -->
+	<title>Cadastro de Usuários</title> 
+        <!-- Bootstrap -->
 	<link href="bootstrap-3.3.2/css/bootstrap.min.css" rel="stylesheet">
-	<script src="bootstrap-3.3.2/js/bootstrap.min.js"></script> 
-	<!-- Css de admin -->
+        <link href="css/datepicker.css" rel="stylesheet">
+        <!-- Css de admin -->
 	<link href="css/admin.css" rel="stylesheet"> 
+	
+	
+        <!-- Scripts js -->
+        <script src="Scripts/jquery-1.11.2.js"></script>         
+        <script src="bootstrap-3.3.2/js/bootstrap.min.js"></script> 
+        <script src="Scripts/bootstrap-datepicker.js"></script> 
+        <script src="Scripts/bootstrap-datepicker.pt-BR.js"></script> 
+        <script src="Scripts/jquery.mask.js"></script> 	
 </head>
 <body>      
 	<div class="container content">
@@ -68,13 +76,13 @@ if (isset($_SESSION["Usuario"]) /*&& isset($_COOKIE['logado'])*/){
 							<div class="control-group">
 								<label class="control-label" for="datanasc">Data de Nascimento </label>
 								<div class="controls">
-									<input type="text" name="datanasc"/>
+									<input class="datepicker" type="text" name="datanasc"/>
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="telefone">Telefone </label>
 								<div class="controls">
-									<input type="text" name="telefone"/>
+									<input class="telefone" type="text" name="telefone"/>
 								</div>
 							</div>
 							<div class="control-group">
@@ -102,8 +110,8 @@ if (isset($_SESSION["Usuario"]) /*&& isset($_COOKIE['logado'])*/){
 
 									$result = mysqli_query($conexao, $sql, $field=0);
 									?>
-									<select name='grupo'>''
-										<option value=''>Selecione</option>''
+									<select name='grupo'>
+										<option value=''>Selecione</option>
 										<?php
 
 										if (mysqli_num_rows($result) > 0) {
@@ -131,13 +139,13 @@ if (isset($_SESSION["Usuario"]) /*&& isset($_COOKIE['logado'])*/){
 							<div class="control-group">
 								<label class="control-label" for="senha">Senha </label>
 								<div class="controls">
-									<input type="text" name="senha"/>
+                                                                    <input type="password" name="senha"/>
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="confsenha"> Confirmação de Senha </label>
 								<div class="controls">
-									<input type="text" name="confsenha"/>
+                                                                    <input type="password" name="confsenha"/>
 								</div>
 							</div>  
 						</fieldset> 
@@ -151,4 +159,23 @@ if (isset($_SESSION["Usuario"]) /*&& isset($_COOKIE['logado'])*/){
 		</div>
 	</div>
 </body>
+
+<footer>
+    
+    <script>
+        $('.datepicker').datepicker({
+            format: "dd/mm/yyyy",
+            language: "pt-BR",
+            clearBtn: true,
+            todayBtn: true,
+            autoclose: true,
+            todayHighlight: true,
+            orientation: "auto"            
+        });
+        
+        $('.telefone').mask("(99) 9999-9999");
+    </script> 
+    
+</footer>
+
 </html>

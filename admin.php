@@ -89,6 +89,19 @@ if (isset($_SESSION["Usuario"]) && isset($_COOKIE['logado'])){
 			<div class="panel panel-primary">
 				<div class="panel-heading">Grupos</div>
 	  			<div class="panel-body">
+                                            <?php
+                                                $cor = '';
+                                                if (isset($_GET['status'])) {
+                                                    if ($_GET['status'] == 1) {
+                                                        $cor = "red";
+                                                    } else{
+                                                        $cor = "green";
+                                                    }
+                                                }
+                                            ?>
+                                            <div class="msgerro <?php echo $cor; ?>">
+                                                <?php echo isset($_GET['msg']) ? $_GET['msg'] : ''; ?>
+                                            </div>
 					<a href="cadastrargrupo.php" class="btn btn-link">Cadastrar novo grupo</a>    
 					<div class="row">   
 						<table class="table table-hover table-condensed table-striped table-bordered">
@@ -114,8 +127,8 @@ if (isset($_SESSION["Usuario"]) && isset($_COOKIE['logado'])){
 										<td> <?php echo $row['nome']; ?> </td>
 										<td> <?php echo utf8_encode($row['tipo']); ?> </td>    
 										<td width="125">
-											<a class="btn btn-xs btn-success " href="Atualizar.php?id=<?php echo $row['codigo']; ?>" > Atualizar</a>
-											<a class="btn btn-xs btn-danger" href="Excluir.php?id=<?php echo $row['codigo']; ?>" > Excluir</a>
+											<a class="btn btn-xs btn-success " href="editargrupo.php?id=<?php echo $row['codigo']; ?>" > Atualizar</a>
+                                                                                        <a class="btn btn-xs btn-danger" href="servidor/excluirgrupo.php?id=<?php echo $row['codigo']; ?>" onclick="return confirm('Você deseja realmente deletar este item?')" > Excluir</a>
 										</td>                     
 									</tr>
 									<?php

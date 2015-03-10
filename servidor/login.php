@@ -3,7 +3,7 @@ require_once("conexao.php");
 session_start();
 
 //Verifica se usuário digitado está cadastrado
-$sql = "SELECT * from usuario where login = '".$_POST['login']."' and senha = '".$_POST['senha']."'";
+$sql = "SELECT * from usuario where login = '".$_POST['login']."' and senha = '". md5($_POST['senha'])."'";
 
 $result = mysqli_query($conexao, $sql, $field=0);
 

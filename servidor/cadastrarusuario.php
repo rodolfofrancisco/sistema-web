@@ -56,7 +56,7 @@ if (!eregi($regex, $email)) {
 
 if (!$erro){
 	$sql = "INSERT INTO usuario (acesso, login, senha, nome, email, codigogrupo, datanasc, sexo, telefone) 
-			VALUES('" . $privilegio ."', '" . $login ."', '" . $senha ."', '" . $nome ."', '" . $email ."', '" . $grupo ."', '" . $datanasc ."', '" . $sexo ."', '" . $telefone ."')"; 
+			VALUES('" . $privilegio ."', '" . $login ."', '" . md5($senha) ."', '" . $nome ."', '" . $email ."', '" . $grupo ."', '" . $datanasc ."', '" . $sexo ."', '" . $telefone ."')"; 
 
 	$result = mysqli_query($conexao, $sql, $field=0);
 
