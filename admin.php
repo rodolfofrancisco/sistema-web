@@ -69,11 +69,11 @@ if (isset($_SESSION["Usuario"]) && isset($_COOKIE['logado'])){
 										<td> <?php echo $row['telefone']; ?> </td>
 										<td> <?php echo $row['sexo'] == 'M' ? 'Marculino' : 'Feminino'; ?> </td>
 										<td> <?php echo $row['grupo']; ?> </td>
-										<td> <?php echo $row['acesso'] == '1' ? 'Administrador' : 'Usuario'; ?> </td>    
+										<td> <?php echo $row['acesso'] == '1' ? 'Administrador' : 'Usuario'; ?> </td>       
 										<td width="125">
-											<a class="btn btn-xs btn-success " href="Atualizar.php?id=<?php echo $row['id']; ?>" > Atualizar</a>
-											<a class="btn btn-xs btn-danger" href="Excluir.php?id=<?php echo $row['id']; ?>" > Excluir</a>
-										</td>                     
+											<a class="btn btn-xs btn-success " href="editarusuario.php?id=<?php echo $row['id']; ?>" > Atualizar</a>
+                                            <a class="btn btn-xs btn-danger" href="servidor/excluirusuario.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Você deseja realmente deletar este item?')" > Excluir</a>
+										</td>                  
 									</tr>
 									<?php
 									}
@@ -128,7 +128,7 @@ if (isset($_SESSION["Usuario"]) && isset($_COOKIE['logado'])){
 										<td> <?php echo utf8_encode($row['tipo']); ?> </td>    
 										<td width="125">
 											<a class="btn btn-xs btn-success " href="editargrupo.php?id=<?php echo $row['codigo']; ?>" > Atualizar</a>
-                                                                                        <a class="btn btn-xs btn-danger" href="servidor/excluirgrupo.php?id=<?php echo $row['codigo']; ?>" onclick="return confirm('Você deseja realmente deletar este item?')" > Excluir</a>
+                                            <a class="btn btn-xs btn-danger" href="servidor/excluirgrupo.php?id=<?php echo $row['codigo']; ?>" onclick="return confirm('Você deseja realmente deletar este item?')" > Excluir</a>
 										</td>                     
 									</tr>
 									<?php

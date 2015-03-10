@@ -3,7 +3,7 @@ require_once("servidor/conexao.php");
 session_start();
 
 //Se não tiver logado redireciona para login
-if (isset($_SESSION["Usuario"]) /*&& isset($_COOKIE['logado'])*/){
+if (isset($_SESSION["Usuario"]) && isset($_COOKIE['logado'])){
 	setcookie("logado", 'ok', time()+60, "/");			
 	
 	//Se não for admin redireciona para index
